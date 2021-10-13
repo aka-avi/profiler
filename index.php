@@ -1,15 +1,6 @@
 <?php 
 
-	$host = 'localhost';
-	$user = 'root';
-	$pass = 'root';
-	$db = 'profiles';
-
-	$conn = mysqli_connect($host, $user, $pass, $db);
-
-	if(!$conn){
-		die('Failed to connect to Database : ' . mysqli_connect_error());
-	}
+	require('db.php');
 
 	$nameerr = '';
 	$emailerr = '';
@@ -77,38 +68,40 @@
 	<nav class="navbar navbar-dark bg-dark">
 		<div class="container-md">
 			<div class="navbar-brand"><span class="h1">Profiler</span></div>
+			<div class="text-warning lead fw-bold">Time Left : <span id="timeLeft">180</span> Sec</div>
 		</div>
 	</nav>
 	<div class="container-md">
 		<div class="row justify-content-center">
 			<form class="col-sm-8" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 				<div class="my-3">
-		  			<label for="name" class="form-label">Please Enter Your Name</label>
+		  			<label for="name" class="form-label">Please Enter Your Name <span class="text-danger">*</span></label>
 		  			<input type="text" class="form-control" id="name" placeholder="Jhon Doe" name="name" required>
 		  			<p class="my-2 text-danger"><?php echo $nameerr; ?></p>
 		  		</div>
 				<div class="my-3">
-		  			<label for="email" class="form-label">Email address</label>
+		  			<label for="email" class="form-label">Email address <span class="text-danger">*</span></label>
 		  			<input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" required>
 		  			<p class="my-2 text-danger"><?php echo $emailerr; ?></p>
 		  		</div>
 				<div class="my-3">
-		  			<label for="dob" class="form-label">Choose your DOB</label>
+		  			<label for="dob" class="form-label">Choose your DOB <span class="text-danger">*</span></label>
 		  			<input type="date" class="form-control" id="dob" name="dob" required>
 		  			<p class="my-2 text-danger"><?php echo $doberr; ?></p>
 		  		</div>
 				<div class="my-3">
-					<label for="about" class="form-label">Tell Us More About Yourself</label>
+					<label for="about" class="form-label">Tell Us More About Yourself <span class="text-danger">*</span></label>
 					<textarea class="form-control" id="about" name="about" rows="3" required></textarea>
 		  			<p class="my-2 text-danger"><?php echo $abouterr; ?></p>
 				</div>
 				<div class="g-recaptcha" data-sitekey='6LePzskcAAAAAFUCqU9yWbMj-L-Fh6i4S5xvzV0d'></div>
 		  			<p class="my-2 text-danger"><?php echo $vererr; ?></p>
 				<div class="my-3">
-					<input type="submit" name="submit" value="submit" class="btn btn-success">
+					<input type="submit" name="submit" value="submit" id="submit" class="btn btn-success">
 				</div>
 			</form>
 		</div>
 	</div>
+	<script type="text/javascript" src="main.js"></script>
 </body>
 </html>
